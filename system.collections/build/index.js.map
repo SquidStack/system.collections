@@ -1,0 +1,1 @@
+{"version":3,"file":"index.js","sourceRoot":"","sources":["../index.ts"],"names":[],"mappings":";;;AAAA,2DAAwD;AAIpD,kGAJK,qCAAiB,OAIL","sourcesContent":["import { CommandDispatcher } from \"./CommandDispatcher\";\r\n\r\n\r\nexport {\r\n    CommandDispatcher,\r\n}"]}
