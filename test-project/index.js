@@ -1,23 +1,11 @@
-import {CommandDispatcher} from 'system-core'
+import {Iterator,Dictionary} from 'system.collections'
 
-var x = new CommandDispatcher()
 
-class CommandHandlerText {
+var z = new Dictionary({age:6,name:"chris",address:"123 Street"});
 
-    execute(command){
-        console.log(command.name);
-        return "Something coool";
-    }
+var iterator = new Iterator(z);
+
+while(iterator.valid()){
+    var [key,value] = iterator.next();
+    console.log({[key]:value})
 }
-
-class Command {
-    handlerReference = CommandHandlerText;
-
-    constructor(name){
-        this.name = name;
-    }
-}
-
-
-var str = x.Dispatch(new Command("testing"))
-console.log(str)

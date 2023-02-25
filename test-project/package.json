@@ -11,6 +11,6 @@
   "author": "",
   "license": "ISC",
   "dependencies": {
-    "system-core": "file:../core-project"
+    "system.collections": "file:../system.collections"
   }
 }

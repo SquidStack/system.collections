@@ -1,15 +1,15 @@
+import { IEnummerable } from "../types";
 
 
-export interface IEnummerable<T>{
+export interface IList<T> extends IEnummerable<T>{
 
-    Add(item:T):IEnummerable<T>;
+    add(item:T):IList<T>;
 
-    Remove(func:(value: T, index: number, array: T[]) => unknown):IEnummerable<T>;
+    remove(func:(value: T, index: number, array: T[]) => unknown):IList<T>;
 
-    ToList():Array<T>;
 }
 
-export class List<T> implements IEnummerable<T>{
+export class List<T> implements IList<T>{
     
     private list:Array<T>
 
@@ -17,17 +17,34 @@ export class List<T> implements IEnummerable<T>{
         this.list = new Array<T>();
     }
 
-    Add(item: T): IEnummerable<T>{
+    public add(item: T): IList<T>{
         this.list.push(item);
         return this;
     }
 
-    Remove(func: (value: T, index: number, array: T[]) => unknown):IEnummerable<T>{
+    public contains(predicate:(value:T,index:number) => void):boolean{
+        return this.list.some(predicate);
+    }
+
+    public remove(func: (value: T, index: number, array: T[]) => unknown):IList<T>{
         this.list = this.list.filter(func);
         return this;
     }
 
-    ToList():T[]{
+    public where(predicate:(value: T, index: number,) => unknown):IList<T>{
+        this.list = this.list.filter(predicate)
+        return this;
+    }
+
+    public forEach(callback: (value: T, index: number, array: T[]) => void){
+        this.list.forEach(callback)
+    }
+
+    public size(): number {
+        return this.list.length;
+    }
+
+    public toArray():T[]{
         return this.list;
     }
 }

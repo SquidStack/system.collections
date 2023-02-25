@@ -1,46 +1,63 @@
+import { IEnummerable } from "../types";
 
-export interface IDicationary<K,V>{
+export interface IDicationary<K,V> extends IEnummerable<[K,V]>{
 
-    Add(key:K,value:V):IDicationary<K,V>;
+    add(key:K,value:V):IDicationary<K,V>;
 
-    GetValue(key:K):V | undefined
+    getValue(key:K):V | undefined
 
-    ForEach(func:(key:K,value:V) => unknown): void;
+    forEach(func:(key:K,value:V) => unknown): void;
 
-    Clear(): IDicationary<K, V>
+    clear(): IDicationary<K, V>
 }
 
 export class Dictionary<K,V> implements IDicationary<K,V>{
     private dictionary:Map<K,V>;
     private objToMap:[K,V][];
-    constructor(obj:object){
-        this.objToMap = Object.entries(obj) as [K,V][]
+    constructor(obj?:object){
+        this.objToMap = obj ? Object.entries(obj) as [K,V][] : Object.entries({}) as [K,V][];
         this.dictionary = new Map<K,V>(this.objToMap);
     }
 
+    get Content() {
+        return Object.fromEntries(this.dictionary);
+    }
 
-    Add(key: K, value: V): IDicationary<K, V> {
+    public add(key: K, value: V): IDicationary<K, V> {
         this.dictionary.set(key,value);
         return this;
     }
 
-    GetValue(key:K):V | undefined{
+    public delete(key:K):IDicationary<K,V>{
+        this.dictionary.delete(key);
+        return this;
+    }
+
+    public getValue(key:K):V | undefined{
         return this.dictionary.get(key);
     }
 
-    ForEach(callback:(key:K,value:V) => unknown){
+    public forEach(callback:(key:K,value:V) => unknown){
         for(var [key,value] of this.dictionary.entries()){
             callback(key,value);
         }
     }
 
-    Clear(): IDicationary<K, V>{
+    public clear(): IDicationary<K, V>{
         this.dictionary.clear();
         return this;
     }
 
-    ToObject(){
+    public size(): number {
+        return this.dictionary.size;
+    }
+
+    public toObject(){
         return Object.fromEntries(this.dictionary);
+    }
+
+    public toArray(){
+        return Array.from(this.dictionary);
     }
 
 }
