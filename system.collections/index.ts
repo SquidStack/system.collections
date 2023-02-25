@@ -7,6 +7,7 @@ import { Iterator } from './Collections/Iterator';
 import { Subject } from './Collections/Observer';
 import { LinkedList } from "./Collections/LinkedList";
 import { Queue } from "./Collections/Queue";
+import { Singleton } from "./Collections/Singleton";
 
 export {
     CommandDispatcher,
@@ -17,5 +18,6 @@ export {
     LinkedList,
     List,
     Subject,
-    Queue
+    Queue,
+    Singleton
 }
