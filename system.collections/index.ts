@@ -3,7 +3,10 @@ import { Injectable } from "./Collections/Injectable";
 import { List } from "./Collections/List";
 import { CommandDispatcher } from "./Collections/CommandDispatcher";
 import { HashSet } from "./Collections/HashSet";
-import {Iterator} from './Collections/Iterator';
+import { Iterator } from './Collections/Iterator';
+import { Subject } from './Collections/Observer';
+import { LinkedList } from "./Collections/LinkedList";
+import { Queue } from "./Collections/Queue";
 
 export {
     CommandDispatcher,
@@ -11,5 +14,8 @@ export {
     HashSet,
     Injectable,
     Iterator,
-    List
+    LinkedList,
+    List,
+    Subject,
+    Queue
 }
