@@ -8,16 +8,58 @@ export class Node<T> implements INode<T>{
 
 
 export class LinkedList<T> implements ILinkedList<T>{
-    
+        
     private head: INode<T> | null = null;
     
     public addAfter(existingNode: INode<T>, data: T): INode<T> {
+        let ar = this.toArray();
+        var ix = ar.findIndex(x => x == existingNode.data);
+
         const node = new Node(data);
+        var curr, prev;
+
+        if(ix == 0){
+            node.next = this.head;
+            this.head = node;
+        } else {
+            curr = this.head;
+            var it = 0;
+            ix = ix +1
+            while (it < ix) {
+                it++;
+                prev = curr;
+                curr = curr != null ? curr.next:null;
+            }
+            prev as INode<T>;
+            node.next = curr;
+            prev != null ? prev.next = node : null;
+        }
+        
         return node;
     }
 
     public addBefore(existingNode: INode<T>, data: T): INode<T> {
+        let ar = this.toArray();
+        var ix = ar.findIndex(x => x == existingNode.data);
+
         const node = new Node(data);
+        var curr, prev;
+
+        if(ix == 0){
+            node.next = this.head;
+            this.head = node;
+        } else {
+            curr = this.head;
+            var it = 0;
+
+            while (it < ix) {
+                it++;
+                prev = curr;
+                curr = curr != null ? curr.next:null;
+            }
+            node.next = curr;
+            prev!= null ? prev.next = node : null
+        }
         
         return node;
     }
@@ -55,7 +97,7 @@ export class LinkedList<T> implements ILinkedList<T>{
         }
     }
 
-    public traverse(): T[] {
+    public toArray(): T[] {
         const array: T[] = [];
         if (!this.head) {
             return array;
@@ -64,7 +106,7 @@ export class LinkedList<T> implements ILinkedList<T>{
     }
 
     public size(): number {
-        return this.traverse().length;
+        return this.toArray().length;
     }
 
     public find(comparator: (data: T) => boolean): INode<T> | null {

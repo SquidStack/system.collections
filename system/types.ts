@@ -6,7 +6,7 @@ export interface IEnummerable<T>{
 export interface IList<T> extends IEnummerable<T>{
     add(item:T):IList<T>;
     addRange(items:Array<T>):IList<T>;
-    getRange(startIndex:number,count:number:):Array<T>;
+    getRange(startIndex:number,count:number):Array<T>;
     contains(predicate:(value:T,index:number) => void):boolean;
     where(predicate:(value: T, index: number) => unknown):IList<T>
     forEach(callback: (value: T, index: number, array: T[]) => void):void;
@@ -67,13 +67,12 @@ export interface INode<T> {
     prev: INode<T> | null
     data: T;
 }
-export interface ILinkedList<T> {
+export interface ILinkedList<T> extends IEnummerable<T>{
     addFirst(data: T): INode<T>;
     addLast(data: T): INode<T>;
     addAfter(existingNode:INode<T>,data:T):INode<T>;
     addBefore(existingNode:INode<T>,data:T):INode<T>;
     deleteNode(node: INode<T>): void;
-    traverse(): T[];
     size(): number;
     clear():void;
     find(comparator: (data: T) => boolean): INode<T> | null;

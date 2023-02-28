@@ -11,6 +11,6 @@
   "author": "",
   "license": "ISC",
   "dependencies": {
-    "system.collections": "file:../system.collections"
+    "system.collections": "file:../system"
   }
 }

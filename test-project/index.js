@@ -1,11 +1,19 @@
-import {Iterator,Dictionary} from 'system.collections'
+import {Iterator,Dictionary,LinkedList,} from 'system.collections'
 
 
-var z = new Dictionary({age:6,name:"chris",address:"123 Street"});
+var list = new LinkedList();
 
-var iterator = new Iterator(z);
+list.addFirst({age:1});
+list.addLast({age:2});
+list.addLast({age:3})
 
-while(iterator.valid()){
-    var [key,value] = iterator.next();
-    console.log({[key]:value})
+var nd = list.find(x => x.age == 3);
+list.addBefore(nd,{age:5});
+
+list.addAfter(nd,{age:6});
+
+var iter = new Iterator(list);
+
+while(iter.valid()){
+    console.log(iter.next().age)
 }
