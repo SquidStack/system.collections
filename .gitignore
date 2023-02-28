@@ -1,2 +1,5 @@
 **/node_modules/
-**/build/
+**/build/**/*.d.ts
+**/build/**/*.js
+**/build/**/*.js.map
+**/build/**/*.ts.map

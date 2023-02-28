@@ -7,12 +7,20 @@ export class List<T> implements IList<T>{
     
     private list:Array<T>
 
-    constructor(){
-        this.list = new Array<T>();
+    constructor(existingList:Array<T>){
+        this.list = existingList ?? new Array<T>();
     }
 
     public getRange(startIndex: number, count: number): T[] {
         return this.list.slice(startIndex,count);
+    }
+
+    public map<V>(predicate: (value:T) => V): V[]{
+        return this.list.map(predicate)
+    }
+
+    public getAtIndex(index: number): T | undefined{
+        return this.list[index];
     }
 
     public removeAll(predicate: (value: T, index: number, array: T[]) => unknown): void {
@@ -27,19 +35,19 @@ export class List<T> implements IList<T>{
         throw new Error("Method not implemented.");
     }
 
-    public find(predicate: any): T {
-        throw new Error("Method not implemented.");
+    public find(predicate:(value: T, index: number, obj: T[]) => unknown): T | undefined {
+        return this.list.find(predicate)
     }
-    public findAll(): T[] {
-        throw new Error("Method not implemented.");
-    }
-
-    public findIndex(): number {
-        throw new Error("Method not implemented.");
+    public findAll(predicate:(value: T, index: number, obj: T[]) => unknown): T[] {
+        return this.list.filter(predicate);
     }
 
-    public indexOf(): number {
-        throw new Error("Method not implemented.");
+    public findIndex(predicate:any): number {
+        return this.list.findIndex(predicate)
+    }
+
+    public indexOf(value:T): number {
+        return this.list.indexOf(value);
     }
 
     public insert(index: number, item: T): void {

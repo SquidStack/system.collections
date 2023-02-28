@@ -7,6 +7,7 @@ export interface IList<T> extends IEnummerable<T>{
     add(item:T):IList<T>;
     addRange(items:Array<T>):IList<T>;
     getRange(startIndex:number,count:number):Array<T>;
+    getAtIndex(index:number):T | undefined;
     contains(predicate:(value:T,index:number) => void):boolean;
     where(predicate:(value: T, index: number) => unknown):IList<T>
     forEach(callback: (value: T, index: number, array: T[]) => void):void;
@@ -17,13 +18,14 @@ export interface IList<T> extends IEnummerable<T>{
     asReadOnly(): ReadonlyArray<T>;
     toArray():Array<T>;
     binarySearch(item:T):number;
-    find(predicate:any):T;
-    findAll():Array<T>;
-    findIndex():number;
-    indexOf():number;
+    find(predicate:(value: T, index: number, obj: T[]) => unknown):T | undefined;
+    findAll(predicate:(value: T, index: number, obj: T[]) => unknown):Array<T>;
+    findIndex(predicate:(value: T, index: number, obj: T[]) => unknown):number;
+    indexOf(value:T):number;
     insert(index:number,item:T):void;
     insertRange(index:number,items:Array<T>):void;
     sort(predicate?: ((a: T, b: T) => number) | undefined):Array<T>
+    map<V>(predicate:(value:T) => V):Array<V>;
 }
 export interface ICommandHandler<TIn,VOut>{
     execute(command:TIn):VOut
