@@ -1,17 +1,28 @@
-import { ILinkedList } from "../types";
+import { ILinkedList, INode } from "../types";
 
-export class Node<T> {
-    public next: Node<T> | null = null;
-    public prev: Node<T> | null = null;
+export class Node<T> implements INode<T>{
+    public next: INode<T> | null = null;
+    public prev: INode<T> | null = null;
     constructor(public data: T) { }
 }
 
 
 export class LinkedList<T> implements ILinkedList<T>{
+    
+    private head: INode<T> | null = null;
+    
+    public addAfter(existingNode: INode<T>, data: T): INode<T> {
+        const node = new Node(data);
+        return node;
+    }
 
-    private head: Node<T> | null = null;
+    public addBefore(existingNode: INode<T>, data: T): INode<T> {
+        const node = new Node(data);
+        
+        return node;
+    }
 
-    public insertInBegin(data: T): Node<T> {
+    public addFirst(data: T): INode<T> {
         const node = new Node(data);
         if (!this.head) {
             this.head = node;
@@ -23,7 +34,7 @@ export class LinkedList<T> implements ILinkedList<T>{
         return node;
     }
 
-    public insertAtEnd(data: T): Node<T> {
+    public addLast(data: T): INode<T> {
         const node = new Node(data);
         if (!this.head) {
             this.head = node;
@@ -56,20 +67,24 @@ export class LinkedList<T> implements ILinkedList<T>{
         return this.traverse().length;
     }
 
-    public search(comparator: (data: T) => boolean): Node<T> | null {
+    public find(comparator: (data: T) => boolean): INode<T> | null {
         return this.head ? this.checkNext(this.head,comparator) : null;
     }
 
-    private getLast(node: Node<T>): Node<T> {
+    public clear(): void{
+        this.head = null;
+    }
+
+    private getLast(node: INode<T>): INode<T> {
         return node.next ? this.getLast(node.next) : node;
     }
 
-    private addToArray(node:Node<T>,array:Array<T>):Array<T>{
+    private addToArray(node:INode<T>,array:Array<T>):Array<T>{
         array.push(node.data);
         return node.next ? this.addToArray(node.next,array) : array;
     }
 
-    private checkNext(node:Node<T>,comparator:(data:T) => boolean):Node<T> | null {
+    private checkNext(node:INode<T>,comparator:(data:T) => boolean):INode<T> | null {
         if(comparator(node.data)){
             return node;
         }
