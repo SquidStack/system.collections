@@ -1,6 +1,6 @@
 {
   "name": "test-project",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "description": "",
   "main": "index.js",
   "type": "module",
@@ -11,6 +11,6 @@
   "author": "",
   "license": "ISC",
   "dependencies": {
-    "@squidstack/system.collections": "file:../system"
+    "@squidstack/system.collections": "^1.0.5"
   }
 }

@@ -1,6 +1,6 @@
 {
   "name": "@squidstack/system.collections",
-  "version": "1.0.0",
+  "version": "1.0.5",
   "description": "A package for core web dev utilities",
   "main": "dist/index.js",
   "scripts": {
@@ -17,6 +17,6 @@
     "reflect-metadata": "^0.1.13"
   },
   "files": [
-    "build/*"
+    "dist/**/*"
   ]
 }
