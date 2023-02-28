@@ -11,6 +11,6 @@
   "author": "",
   "license": "ISC",
   "dependencies": {
-    "system.collections": "file:../system"
+    "@squidstack/system.collections": "file:../system"
   }
 }

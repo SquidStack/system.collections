@@ -2,7 +2,7 @@
   "name": "@squidstack/system.collections",
   "version": "1.0.0",
   "description": "A package for core web dev utilities",
-  "main": "index.js",
+  "main": "dist/index.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
     "build": "tsc"
