@@ -1,24 +1,4 @@
-
-
-export interface ICommandHandler<TIn,VOut>{
-    execute(command:TIn):VOut
-}
-
-export interface ICommand{
-    /**
-     * This should be a reference to the command handler class 
-     * as the instance is created from this reference
-     */
-    handlerReference:any;
-}
-
-export interface ICommandDispatcher{
-
-    dispatch<TIn extends ICommand,VOut>(command:TIn):VOut;
-
-    dispatchAsync<TIn extends ICommand,VOut>(command:TIn):Promise<VOut>;
-
-}
+import { ICommand, ICommandDispatcher } from "../types";
 
 export class CommandDispatcher implements ICommandDispatcher{
 

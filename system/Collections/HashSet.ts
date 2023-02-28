@@ -1,6 +1,5 @@
 
 
-
 export class HashSet<T> {
 
     private hashset:Set<T>;

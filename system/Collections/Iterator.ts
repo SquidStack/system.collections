@@ -1,25 +1,4 @@
-import { IEnummerable } from "../types";
-
-type IteratorUnion<T> = T | undefined; 
-export interface IIterator<T extends IEnummerable<T>> {
-    // Return the current element.
-    current(): IteratorUnion<T>;
-
-    // Return the current element and move forward to next element.
-    next(): IteratorUnion<T>;
-
-    // Return the key of the current element.
-    key(): number;
-
-    // Checks if current position is valid.
-    valid(): boolean;
-
-    // Return the current element and them move backwards to the previous.
-    previous(): IteratorUnion<T>;
-
-    // Reset the interator to the first element
-    reset():void
-}
+import { IEnummerable, IIterator, IteratorUnion } from "../types";
 
 export class Iterator<T extends IEnummerable<T>> implements IIterator<T>{
 

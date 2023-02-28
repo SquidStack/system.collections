@@ -1,15 +1,6 @@
-import { IEnummerable } from "../types";
+import { IDicationary } from "../types";
 
-export interface IDicationary<K,V> extends IEnummerable<[K,V]>{
 
-    add(key:K,value:V):IDicationary<K,V>;
-
-    getValue(key:K):V | undefined
-
-    forEach(func:(key:K,value:V) => unknown): void;
-
-    clear(): IDicationary<K, V>
-}
 
 export class Dictionary<K,V> implements IDicationary<K,V>{
     private dictionary:Map<K,V>;
@@ -52,11 +43,11 @@ export class Dictionary<K,V> implements IDicationary<K,V>{
         return this.dictionary.size;
     }
 
-    public toObject(){
+    public toObject():{[key:string]:V}{
         return Object.fromEntries(this.dictionary);
     }
 
-    public toArray(){
+    public toArray():Array<[K,V]>{
         return Array.from(this.dictionary);
     }
 

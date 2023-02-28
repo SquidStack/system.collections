@@ -1,19 +1,6 @@
+import { IObserver, ISubject } from "../types";
 
-export interface IObserver<V> {
-    // Receive update from subject.
-    update(eventData?:V): void;
-}
 
-export interface ISubject<V> {
-    // Attach an observer to the subject.
-    subscribe(observer: IObserver<V>): void;
-
-    // Detach an observer from the subject.
-    unsubscribe(observer: IObserver<V>): void;
-
-    // Notify all observers about an event.
-    publish(value?:V): void;
-}
 
 export class Subject<V> implements ISubject<V>{
     

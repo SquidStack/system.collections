@@ -1,13 +1,7 @@
-import { IEnummerable } from "../types";
+import { IList } from "../types";
 
 
-export interface IList<T> extends IEnummerable<T>{
 
-    add(item:T):IList<T>;
-
-    remove(func:(value: T, index: number, array: T[]) => unknown):IList<T>;
-
-}
 
 export class List<T> implements IList<T>{
     
@@ -31,7 +25,7 @@ export class List<T> implements IList<T>{
         return this;
     }
 
-    public where(predicate:(value: T, index: number,) => unknown):IList<T>{
+    public where(predicate:(value: T, index: number) => unknown):IList<T>{
         this.list = this.list.filter(predicate)
         return this;
     }
