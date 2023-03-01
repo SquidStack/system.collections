@@ -11,6 +11,10 @@ export class List<T> implements IList<T>{
         this.list = existingList ?? new Array<T>();
     }
 
+    public get content(){
+        return this.list;
+    }
+
     public getRange(startIndex: number, count: number): T[] {
         return this.list.slice(startIndex,count);
     }

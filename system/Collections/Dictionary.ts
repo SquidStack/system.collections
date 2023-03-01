@@ -11,9 +11,8 @@ export class Dictionary<K,V> implements IDicationary<K,V>{
         this.dictionary = new Map<K,V>(this.objToMap);
         this.maxCapacity = Infinity;
     }
-    
 
-    get Content() {
+    get content() {
         return Object.fromEntries(this.dictionary);
     }
 

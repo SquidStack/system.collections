@@ -8,6 +8,7 @@ import { Subject } from './Collections/Observer';
 import { LinkedList } from "./Collections/LinkedList";
 import { Queue } from "./Collections/Queue";
 import { Singleton } from "./Collections/Singleton";
+import { HttpClient } from "./Core/HttpClient";
 
 export {
     CommandDispatcher,
@@ -19,5 +20,6 @@ export {
     List,
     Subject,
     Queue,
-    Singleton
+    Singleton,
+    HttpClient
 }
