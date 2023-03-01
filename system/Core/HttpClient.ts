@@ -25,7 +25,6 @@ export class HttpClient{
                 }
             }
             this._client.send();
-            this.reset();
         })
     }
 
@@ -38,13 +37,10 @@ export class HttpClient{
 
     public async post<B,T>(url:string,body:B):Promise<T>{
         return new Promise<T>((resolve,reject) => {
-
             this._client.open("POST",url,true);
-
             Object.entries(this.defaultHeaders).forEach(([key,value]) => {
                 this._client.setRequestHeader(key,value)
             });
-            
             if(this._client.readyState === this._client.DONE){
                 if(this._client.status == 0 || (this._client.status >= 200 || this._client.status < 400)){
                     resolve(this._client.response);
@@ -56,11 +52,44 @@ export class HttpClient{
                 }
             }
             this._client.send(JSON.stringify(body));
-            this.reset();
         })
     }
 
-    private reset(){
-        this._client = new XMLHttpRequest();
+    public async put<B,T>(url:string,body:B):Promise<T>{
+        return new Promise((resolve,reject) => {
+            this._client.open("PUT",url,true);
+            Object.entries(this.defaultHeaders).forEach(([key,value]) => {
+                this._client.setRequestHeader(key,value)
+            });
+            if(this._client.readyState === this._client.DONE){
+                if(this._client.status == 0 || (this._client.status >= 200 || this._client.status < 400)){
+                    resolve(this._client.response);
+                }else{
+                    reject({
+                        status:this._client.status,
+                        reasonPhrase:this._client.responseText
+                    })
+                }
+            }
+            this._client.send(JSON.stringify(body));
+        })
     }
+
+    public async delete(url:string){
+        return new Promise((resolve,reject) => {
+            this._client.open("DELETE",url,true);
+            if(this._client.readyState === this._client.DONE){
+                if(this._client.status == 0 || (this._client.status >= 200 || this._client.status < 400)){
+                    resolve(this._client.response);
+                }else{
+                    reject({
+                        status:this._client.status,
+                        reasonPhrase:this._client.responseText
+                    })
+                }
+            }
+            this._client.send();
+        })
+    }
+
 }
